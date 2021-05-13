@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'courses/list'
   devise_for :users
   #get 'sessions/new'
   #get 'sessions/create'
