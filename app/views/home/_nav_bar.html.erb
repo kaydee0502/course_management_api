@@ -1,0 +1,32 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand">Protonest</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+        <%= link_to "Home",root_path,class:"nav-link" %>
+   
+        </li>
+        <li class="nav-item">
+          <%= link_to "Courses",courses_list_path,class:"nav-link" %>
+          
+        </li>
+        <li class="nav-item">
+        
+          <a class="nav-link" href="#">About</a>
+        </li>
+      </ul>
+      <span class="navbar-text">
+      <%= link_to "Login",new_user_session_path,class:"nav-link" %>
+    
+      </span>
+      <span class="navbar-text">
+      <%= link_to "Sign In",new_user_registration_path,class:"nav-link" %>
+  
+      </span>
+    </div>
+  </div>
+</nav>
