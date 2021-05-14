@@ -12,11 +12,16 @@ class CoursesController < ApplicationController
   end
 
   def enroll
-    course = params[:course]
-    @subs = Subscription.new
-    @subs.user_id = current_user.id
-    @subs.course_id = course
-    @subs.save
+    course = params[:c]
+    
+    if not Subscription.where(user_id: current_user.id,course_id: course).exists?
+
+      @subs = Subscription.new
+      @subs.user_id = current_user.id
+      @subs.course_id = course
+      @subs.save
+    end
+    
   end
 
   # GET /courses/new

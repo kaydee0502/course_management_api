@@ -13,8 +13,10 @@
     <h5 class="card-title"><%= course.name %></h5>
     <p class="card-text"><%= course.description %></p>
     <%= link_to 'Show', course,class:"btn btn-primary",style:"color : #FFF"%>
+    <% if current_user && current_user.admin %>
     <%= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' },class:"btn btn-error" %>
-    <%= link_to 'Enroll', courses_enroll_path(:course => course.id), method: :post %>
+    <%end %>
+    <%= link_to 'Enroll', courses_enroll_path(:c => course.id), method: :post,class:"btn btn-success",style:"color" %>
   </div>
 </div>
 <% end %>
