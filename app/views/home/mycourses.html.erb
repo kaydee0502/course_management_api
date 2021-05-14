@@ -1,0 +1,30 @@
+<%= render "home/nav_bar" %>
+<p id="notice"><%= notice %></p>
+
+<h1>Courses</h1>
+
+
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Seats</th>
+      <th>Enrolled</th>
+      <th>Description</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% current_user.courses.each do |course| %>
+      <tr>
+        <td><%= course.name %></td>
+        <td><%= course.seats %></td>
+        <td><%= course.enrolled %></td>
+        <td><%= course.description %></td>
+        <td><%= link_to 'Show', course %></td>
+       
+      </tr>
+    <% end %>
+  </tbody>
+</table>

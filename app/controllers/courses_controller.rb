@@ -11,6 +11,8 @@ class CoursesController < ApplicationController
   def show
   end
 
+  
+
   def enroll
     course = params[:c]
     

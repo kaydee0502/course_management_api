@@ -20,6 +20,7 @@
     <%= link_to 'Enroll', courses_enroll_path(:c => course.id), method: :post,class:"btn btn-success",style:"color" %>
     <%else %>
     <%= link_to 'Enrolled', courses_enroll_path(:c => course.id), method: :post,class:"btn btn-success disabled",style:"color" %>
+    <%= link_to 'De Enroll', courses_enroll_path(:c => course.id), method: :post,class:"btn btn-danger disabled",style:"color" %>
     <%end %>
 
   </div>
