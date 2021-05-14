@@ -3,9 +3,17 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
     
-    
+    <% if current_user && current_user.admin%>
       <span class="navbar-text">
-      KayDee
+      Logged in as Admin
+      </span>
+    <% elsif current_user%>
+
+    <span class="navbar-text">
+      Logged in as Student
+      </span>
+    <% end %>
+
     
       
     </div>

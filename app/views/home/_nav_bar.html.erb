@@ -19,6 +19,7 @@
           <a class="nav-link" href="#">About</a>
         </li>
       </ul>
+      <% if not current_user %>
       <span class="navbar-text">
       <%= link_to "Login",new_user_session_path,class:"nav-link" %>
     
@@ -27,6 +28,14 @@
       <%= link_to "Sign In",new_user_registration_path,class:"nav-link" %>
   
       </span>
+      <% else %>
+
+      </span>
+      <span class="navbar-text">
+      <%= link_to "Sign Out",destroy_user_session_path,class:"nav-link", method: :delete %>
+  
+      </span>
+      <% end %>
     </div>
   </div>
 </nav>
