@@ -1,0 +1,20 @@
+<%= render "home/nav_bar" %>
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @course.name %>
+</p>
+
+<p>
+  <strong>Seats:</strong>
+  <%= @course.seats %>
+</p>
+
+<p>
+  <strong>Enrolled:</strong>
+  <%= @course.enrolled %>
+</p>
+
+<%= link_to 'Edit', edit_course_path(@course) %> |
+<%= link_to 'Back', courses_path %>
