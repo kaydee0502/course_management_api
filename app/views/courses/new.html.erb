@@ -1,6 +1,8 @@
 <%= render "home/nav_bar" %>
 <h1>New Course</h1>
-
+<% if current_user && current_user.admin %>
 <%= render 'form', course: @course %>
-
+<% else %>
+<h1>Unauthorized access</h1>
+<%end%>
 <%= link_to 'Back', courses_path %>

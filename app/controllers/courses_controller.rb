@@ -11,6 +11,14 @@ class CoursesController < ApplicationController
   def show
   end
 
+  def enroll
+    course = params[:course]
+    @subs = Subscription.new
+    @subs.user_id = current_user.id
+    @subs.course_id = course
+    @subs.save
+  end
+
   # GET /courses/new
   def new
     @course = Course.new
@@ -66,5 +74,10 @@ class CoursesController < ApplicationController
     # Only allow a list of trusted parameters through.
     def course_params
       params.require(:course).permit(:name, :seats, :enrolled, :description)
+      
+    end
+
+    def subs_params
+      params.require(:subscriptions).permit(:id, :user_id, :course_id, :created_at, :updated_at)
     end
 end

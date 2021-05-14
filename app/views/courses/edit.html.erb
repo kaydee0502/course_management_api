@@ -1,6 +1,9 @@
 <h1>Editing Course</h1>
-
+<% if current_user && current_user.admin %>
 <%= render 'form', course: @course %>
+<% else %>
+<h1>Unauthorized access</h1>
+<%end%>
 
 <%= link_to 'Show', @course %> |
 <%= link_to 'Back', courses_path %>
