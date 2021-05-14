@@ -14,6 +14,7 @@ class CoursesTest < ApplicationSystemTestCase
     visit courses_url
     click_on "New Course"
 
+    fill_in "Description", with: @course.description
     fill_in "Enrolled", with: @course.enrolled
     fill_in "Name", with: @course.name
     fill_in "Seats", with: @course.seats
@@ -27,6 +28,7 @@ class CoursesTest < ApplicationSystemTestCase
     visit courses_url
     click_on "Edit", match: :first
 
+    fill_in "Description", with: @course.description
     fill_in "Enrolled", with: @course.enrolled
     fill_in "Name", with: @course.name
     fill_in "Seats", with: @course.seats

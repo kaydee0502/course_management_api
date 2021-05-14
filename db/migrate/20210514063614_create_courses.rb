@@ -4,6 +4,7 @@ class CreateCourses < ActiveRecord::Migration[6.1]
       t.string :name
       t.integer :seats
       t.integer :enrolled
+      t.text :description
 
       t.timestamps
     end

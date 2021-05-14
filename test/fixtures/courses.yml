@@ -4,8 +4,10 @@ one:
   name: MyString
   seats: 1
   enrolled: 1
+  description: MyText
 
 two:
   name: MyString
   seats: 1
   enrolled: 1
+  description: MyText
