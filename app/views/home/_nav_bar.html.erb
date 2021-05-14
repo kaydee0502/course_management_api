@@ -13,11 +13,14 @@
         <li class="nav-item">
           <%= link_to "Courses",courses_path,class:"nav-link" %>
           
+        
         </li>
+        <% if current_user%>
         <li class="nav-item">
         <%= link_to "My Courses",home_mycourses_path,class:"nav-link" %>
           
         </li>
+        <%end%>
       </ul>
       <% if not current_user %>
       <span class="navbar-text">
