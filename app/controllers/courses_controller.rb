@@ -17,7 +17,7 @@ class CoursesController < ApplicationController
     user = params[:u]
 
     Subscription.where(user_id: user,course_id: course).destroy_all
-    redirect_back fallback_location: courses_path
+    redirect_to request.referrer, :notice => "User de enrolled from this course!"
 
   end
   
@@ -31,7 +31,7 @@ class CoursesController < ApplicationController
       @subs.user_id = current_user.id
       @subs.course_id = course
       @subs.save
-      redirect_back fallback_location: courses_path
+      redirect_to request.referrer, :notice => "You are enrolled in this course!"
     end
     
   end
