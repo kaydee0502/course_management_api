@@ -1,6 +1,44 @@
 <%= render "home/nav_bar" %>
 <p id="notice"><%= notice %></p>
 
+
+
+
+
+<table>
+  <thead>
+    <tr>
+      <th>User ID</th>
+      <th>Name</th>
+      <th>Email ID</th>
+      <th>Joined</th>
+      
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @course.users.each do |user| %>
+      <tr>
+        <td><%= user.id %></td>
+        <td><%= user.email.split("@")[0] %></td>
+        <td><%= user.email %></td>
+        
+        <td><%= user.created_at %></td>
+
+       </tr>
+      <% end %>
+       
+
+    
+
+  </tbody>
+</table>
+
+
+
+
+
+
 <p>
   <strong>Name:</strong>
   <%= @course.name %>
@@ -28,6 +66,7 @@
   <strong>Uid:</strong>
   <%= current_user.id %>
 </p>
+
 
 
 <%= link_to 'Edit', edit_course_path(@course) %> |
