@@ -1,4 +1,10 @@
-<h1>Editing Course</h1>
+<%= render "home/nav_bar" %>
+<p id="notice"><%= notice %></p>
+
+<div class="back">
+
+
+<h1 style="margin:10px;margin-top:20px;color:white;text-align: center">Editing Course</h1>
 <% if current_user && current_user.admin %>
 <%= render 'form', course: @course %>
 <% else %>
@@ -7,3 +13,4 @@
 
 <%= link_to 'Show', @course %> |
 <%= link_to 'Back', courses_path %>
+</div>

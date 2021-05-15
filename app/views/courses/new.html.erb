@@ -1,10 +1,14 @@
 <%= render "home/nav_bar" %>
+<p id="notice"><%= notice %></p>
 
+<div class="back">
 
-<h1>New Course</h1>
+<h1 style="margin:10px;margin-top:20px;color:white;text-align: center">New Course</h1>
 <% if current_user && current_user.admin %>
 <%= render 'form', course: @course %>
 <% else %>
 <h1>Unauthorized access</h1>
 <%end%>
 <%= link_to 'Back', courses_path %>
+
+</div>

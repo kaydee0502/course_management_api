@@ -1,3 +1,7 @@
+
+
+<div style="display: flex;justify-content:center; padding-top:5%">
+<div class="card text-center col-sm-8">
 <%= form_with(model: course) do |form| %>
   <% if course.errors.any? %>
     <div id="error_explanation">
@@ -11,27 +15,29 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="form-group" style="padding:10px;">
     <%= form.label :name %>
-    <%= form.text_field :name %>
+    <%= form.text_field :name, class:"form-control" %>
   </div>
 
-  <div class="field">
+  <div class="form-group" style="padding:10px;">
     <%= form.label :seats %>
-    <%= form.number_field :seats %>
+    <%= form.number_field :seats , class:"form-control"%>
   </div>
 
-  <div class="field">
+  <div class="form-group" style="padding:10px;">
     <%= form.label :enrolled %>
-    <%= form.number_field :enrolled %>
+    <%= form.number_field :enrolled, class:"form-control" %>
   </div>
 
-  <div class="field">
+  <div class="form-group" style="padding:10px;">
     <%= form.label :description %>
-    <%= form.text_area :description %>
+    <%= form.text_area :description, class:"form-control" %>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
+  <div class="form-group" style="padding:10px;">
+    <%= form.submit "Done",class: 'btn btn-primary' %>
   </div>
 <% end %>
+</div>
+</div>

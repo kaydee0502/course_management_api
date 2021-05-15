@@ -9,14 +9,17 @@
 <h5 style = "margin:10px;margin-top:20px;color:white;">Total Seats : <%= @course.seats %></h5>
 
 <h5 style = "margin:10px;margin-top:20px;color:white;">About Course : <%= @course.description %></h5>
-<h5 style = "margin:10px;margin-top:20px;color:white;">Total Students : <%= @course.enrolled %></h5>
 
 
+
+<div style="display: flex;justify-content:center; padding-top:5%">
+<div class="card text-center col-sm-8">
+<h5 style = "margin:10px;margin-top:20px;">Total Students : <%= @course.enrolled %></h5>
 <div class="row justify-content-center">
     <div class="col-auto">
 
 
-<table class="table table-hover" style="color:white">
+<table class="table table-hover">
   <thead >
     <tr>
       <th>User ID</th>
@@ -48,6 +51,8 @@
 </table>
 </div>
 </div>
+</div>
+</div>
 
 
 
@@ -57,8 +62,11 @@
 
 
 
+<div style="display: flex;justify-content:center;margin : 20px;">
+<% if current_user && current_user.admin %>
 
-
-<%= link_to 'Edit', edit_course_path(@course) %> |
-<%= link_to 'Back', courses_path %>
+<%= link_to 'Edit', edit_course_path(@course),class: "btn btn-warning",style:"color : #000" %> 
+<%end%>|
+<%= link_to 'Back', courses_path,class: "btn btn-success",style:"color : #FFF" %>
+</div>
 </div>
