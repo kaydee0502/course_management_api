@@ -1,4 +1,6 @@
 <%= render "home/nav_bar" %>
+
+
 <h1>New Course</h1>
 <% if current_user && current_user.admin %>
 <%= render 'form', course: @course %>

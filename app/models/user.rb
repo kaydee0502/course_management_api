@@ -6,7 +6,7 @@ class User < ApplicationRecord
 
 
          has_many :subscriptions
-         has_many :courses, through: :subscriptions
+         has_many :courses, through: :subscriptions, dependent: :delete_all
 
 
   
