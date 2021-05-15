@@ -52,4 +52,5 @@ production:
   <<: *default
   database: protonest_production
   username: protonest
+  
   password: <%= ENV['PROTONEST_DATABASE_PASSWORD'] %>
