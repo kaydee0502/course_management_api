@@ -16,11 +16,11 @@
     <% if current_user && current_user.admin %>
     <%= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' },class:"btn btn-error" %>
     <%end %>
-    <% if not Subscription.where(user_id: current_user.id,course_id: course.id).exists?  %>
+    <% if current_user && !Subscription.where(user_id: current_user.id,course_id: course.id).exists?  %>
     <%= link_to 'Enroll', courses_enroll_path(:c => course.id), method: :post,class:"btn btn-success",style:"color" %>
-    <%else %>
+    <%elsif current_user %>
     <%= link_to 'Enrolled', courses_enroll_path(:c => course.id), method: :post,class:"btn btn-success disabled",style:"color" %>
-    <%= link_to 'De Enroll', courses_enroll_path(:c => course.id), method: :post,class:"btn btn-danger disabled",style:"color" %>
+    <%= link_to 'De Enroll', courses_deenroll_path(:c => course.id, :u => current_user.id), method: :post,class:"btn btn-danger",style:"color" %>
     <%end %>
 
   </div>

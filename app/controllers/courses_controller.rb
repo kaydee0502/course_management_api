@@ -11,6 +11,15 @@ class CoursesController < ApplicationController
   def show
   end
 
+
+  def deenroll
+    course = params[:c]
+    user = params[:u]
+
+    Subscription.where(user_id: user,course_id: course).destroy_all
+    redirect_back fallback_location: courses_path
+
+  end
   
 
   def enroll
@@ -22,6 +31,7 @@ class CoursesController < ApplicationController
       @subs.user_id = current_user.id
       @subs.course_id = course
       @subs.save
+      redirect_back fallback_location: courses_path
     end
     
   end
