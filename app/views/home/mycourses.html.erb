@@ -1,14 +1,17 @@
 <%= render "home/nav_bar" %>
 <p id="notice"><%= notice %></p>
 
-<div class="backc">
+<div class="back">
 <h1 style="margin:10px;margin-top:20px;color:white;">My Courses</h1>
 
+
+<div style="display: flex;justify-content:center; padding-top:5%">
+<div class="card text-center col-sm-8">
 <div class="row justify-content-center">
     <div class="col-auto">
 
 
-<table class="table table-hover" style="color:white">
+<table class="table table-hover">
   <thead>
     <tr>
       <th scope="col" >Name</th>
@@ -31,6 +34,8 @@
     <% end %>
   </tbody>
 </table>
+</div>
+</div>
 </div>
 </div>
 

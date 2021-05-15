@@ -26,7 +26,7 @@
     <p class="card-text"><%= course.description %></p>
     <%= link_to 'Show', course,class:"btn btn-primary",style:"color : #FFF"%>
     <% if current_user && current_user.admin %>
-    <%= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' },class:"btn btn-error" %>
+    <%= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' },class:"btn btn-secondary",style:"margin : 5px; color:white" %>
     <%end %>
     <% if current_user && course.seats > course.enrolled && !Subscription.where(user_id: current_user.id,course_id: course.id).exists?  %>
     <%= link_to 'Enroll', courses_enroll_path(:c => course.id), method: :post,class:"btn btn-success",style:"color" %>
