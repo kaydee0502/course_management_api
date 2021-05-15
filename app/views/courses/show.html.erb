@@ -25,7 +25,7 @@
         
         <td><%= user.created_at %></td>
         <% if current_user && current_user.admin %>
-        <td><%= link_to 'Remove', courses_deenroll_path(:c => @course.id, :u => user.id),:confirm => "Are you sure want to de enroll?", method: :post,class:"btn btn-danger",style:"color" %></td>
+        <td><%= link_to 'Remove', courses_deenroll_path(:c => @course.id, :u => user.id),:confirm => "Are you sure want to de enroll?", method: :post %></td>
         <%end %>
        </tr>
       <% end %>
