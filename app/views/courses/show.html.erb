@@ -3,10 +3,21 @@
 
 
 
+<div class="back">
+
+<h1 style="margin:10px;margin-top:20px;color:white;"><%= @course.name %></h1>
+<h5 style = "margin:10px;margin-top:20px;color:white;">Total Seats : <%= @course.seats %></h5>
+
+<h5 style = "margin:10px;margin-top:20px;color:white;">About Course : <%= @course.description %></h5>
+<h5 style = "margin:10px;margin-top:20px;color:white;">Total Students : <%= @course.enrolled %></h5>
 
 
-<table>
-  <thead>
+<div class="row justify-content-center">
+    <div class="col-auto">
+
+
+<table class="table table-hover" style="color:white">
+  <thead >
     <tr>
       <th>User ID</th>
       <th>Name</th>
@@ -35,31 +46,14 @@
 
   </tbody>
 </table>
+</div>
+</div>
 
 
 
 
 
 
-<p>
-  <strong>Name:</strong>
-  <%= @course.name %>
-</p>
-
-<p>
-  <strong>Seats:</strong>
-  <%= @course.seats %>
-</p>
-
-<p>
-  <strong>Enrolled:</strong>
-  <%= @course.enrolled %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @course.description %>
-</p>
 
 
 
@@ -67,3 +61,4 @@
 
 <%= link_to 'Edit', edit_course_path(@course) %> |
 <%= link_to 'Back', courses_path %>
+</div>
