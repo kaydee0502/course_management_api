@@ -17,6 +17,11 @@ class CoursesController < ApplicationController
     user = params[:u]
 
     Subscription.where(user_id: user,course_id: course).destroy_all
+    enrl = Course.find(course)
+    enrl.enrolled -= 1
+    enrl.save
+
+
     redirect_to request.referrer, :notice => "User de enrolled from this course!"
 
   end
@@ -31,6 +36,10 @@ class CoursesController < ApplicationController
       @subs.user_id = current_user.id
       @subs.course_id = course
       @subs.save
+
+      enrl = Course.find(course)
+      enrl.enrolled += 1
+      enrl.save
       redirect_to request.referrer, :notice => "You are enrolled in this course!"
     end
     
