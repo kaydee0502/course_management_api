@@ -16,14 +16,27 @@ class CoursesController < ApplicationController
     course = params[:c]
     user = params[:u]
 
-    Subscription.where(user_id: user,course_id: course).destroy_all
-    enrl = Course.find(course)
-    enrl.enrolled -= 1
-    enrl.save
+
+    if Subscription.where(user_id: current_user.id,course_id: course).exists?
+
+      enrl = Course.find(course)
+
+      if enrl.enrolled > 0
+        Subscription.where(user_id: user,course_id: course).destroy_all
+        enrl = Course.find(course)
+        enrl.enrolled -= 1
+        enrl.save
+        redirect_to request.referrer, :notice => "User de enrolled from this course!"
+      else
+        redirect_to request.referrer, :notice => "Can't de enroll, something went wrong!"
+      end
 
 
-    redirect_to request.referrer, :notice => "User de enrolled from this course!"
 
+    else
+      redirect_to request.referrer, :notice => "You are not a part of this course!"
+    end
+    
   end
   
 
@@ -31,17 +44,32 @@ class CoursesController < ApplicationController
     course = params[:c]
     
     if not Subscription.where(user_id: current_user.id,course_id: course).exists?
-
-      @subs = Subscription.new
-      @subs.user_id = current_user.id
-      @subs.course_id = course
-      @subs.save
-
       enrl = Course.find(course)
-      enrl.enrolled += 1
-      enrl.save
-      redirect_to request.referrer, :notice => "You are enrolled in this course!"
+
+      if enrl.enrolled >= enrl.seats
+        redirect_to request.referrer, :notice => "Can't enroll, no seats available!"
+
+      else
+
+
+
+        @subs = Subscription.new
+        @subs.user_id = current_user.id
+        @subs.course_id = course
+        @subs.save
+
+        
+        enrl.enrolled += 1
+        enrl.save
+        redirect_to request.referrer, :notice => "You are now enrolled in this course!"
+      end
+
+    else
+      redirect_to request.referrer, :notice => "You are already enrolled in this course!"
     end
+    
+
+
     
   end
 
