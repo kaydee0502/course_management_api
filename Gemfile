@@ -24,6 +24,8 @@ gem 'jbuilder', '~> 2.7'
 gem 'bcrypt', '~> 3.1.7'
 gem 'devise', '~> 4.2'
 gem 'mysql2', '~> 0.5'
+gem 'devise_token_auth'
+gem 'omniauth', '~> 1.6', '>= 1.6.1'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 

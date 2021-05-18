@@ -1,7 +1,17 @@
 Rails.application.routes.draw do
+
+  devise_for :users
+
+  # token auth routes available at /api/auth/
+  namespace :api, defaults: { format: :json } do
+    scope module: :v1 do
+      mount_devise_token_auth_for 'User', at: 'auth'
+    end
+  end
+  #mount_devise_token_auth_for 'User', at: 'auth'
   resources :courses
   #get 'courses/list'
-  devise_for :users
+  #devise_for :users
   #get 'sessions/new'
   #get 'sessions/create'
   #get 'sessions/login'
