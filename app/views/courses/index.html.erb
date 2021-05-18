@@ -38,7 +38,7 @@
 
     <% elsif current_user %>
     <%= link_to 'Enrolled', courses_enroll_path(:c => course.id), method: :post,class:"btn btn-success disabled",style:"color" %>
-    <%= link_to 'De Enroll', courses_deenroll_path(:c => course.id, :u => current_user.id),:confirm => "Are you sure want to de enroll?", method: :post,class:"btn btn-danger",style:"margin-top : 5px" %>
+    <%= link_to 'De Enroll', courses_deenroll_path(:c => course.id, :u => current_user.id),:confirm => "Are you sure want to de enroll?", method: :post,class:"btn btn-danger" %>
     <%end %>
 
   </div>
