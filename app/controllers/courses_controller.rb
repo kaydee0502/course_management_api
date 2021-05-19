@@ -74,8 +74,15 @@ class CoursesController < ApplicationController
   def enroll
     cid = params[:c]
     uid = params[:u]
+
+  if not User.where(id: uid).exists?
+    render json: {:status => "error", :notice => "No such user!"}
+
+  elsif not Course.where(id: cid).exists?
+      render json: {:status => "error", :notice => "No such course!"}
+      
     
-    if not Subscription.where(user_id: uid,course_id: cid).exists?
+  elsif not Subscription.where(user_id: uid,course_id: cid).exists?
       enrl = Course.find(cid)
 
       if enrl.enrolled >= enrl.seats
@@ -98,6 +105,9 @@ class CoursesController < ApplicationController
         render json: {:status => "success", :notice => "User is now enrolled in this course!"}
         
       end
+
+   
+
 
     else
       render json: {:status => "error", :notice => "You are already enrolled in this course!"}
