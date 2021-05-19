@@ -11,13 +11,44 @@ class CoursesController < ApplicationController
   def show
   end
 
+  def list
+    user = params[:u]
+    if User.where(id: user).exists?
+
+      l = User.find(user).courses
+      render json: l.to_json
+    else
+      msg = { :status => "error", :message => "User not found!"}
+      render json: msg
+
+
+    end
+
+
+  end
+
+  def enrollments
+    course = params[:c]
+    if Course.where(id: course).exists?
+
+      l = Course.find(course).users
+      render json: l.to_json
+    else
+      msg = { :status => "error", :message => "Course not found!"}
+      render json: msg
+
+
+    end
+
+
+  end
 
   def deenroll
     course = params[:c]
     user = params[:u]
 
 
-    if Subscription.where(user_id: current_user.id,course_id: course).exists?
+    if Subscription.where(user_id: user,course_id: course).exists?
 
       enrl = Course.find(course)
 
@@ -26,46 +57,51 @@ class CoursesController < ApplicationController
         enrl = Course.find(course)
         enrl.enrolled -= 1
         enrl.save
-        redirect_to request.referrer, :notice => "User de enrolled from this course!"
+        render json: {:status => "success", :notice => "User de enrolled from this course!"}
       else
-        redirect_to request.referrer, :notice => "Can't de enroll, something went wrong!"
+        render json: {:status => "error", :notice => "Somthing went wrong!"}
       end
 
 
 
     else
-      redirect_to request.referrer, :notice => "You are not a part of this course!"
+      render json: {:status => "error", :notice => "User is not a part of this course"}
     end
     
   end
   
 
   def enroll
-    course = params[:c]
+    cid = params[:c]
+    uid = params[:u]
     
-    if not Subscription.where(user_id: current_user.id,course_id: course).exists?
-      enrl = Course.find(course)
+    if not Subscription.where(user_id: uid,course_id: cid).exists?
+      enrl = Course.find(cid)
 
       if enrl.enrolled >= enrl.seats
-        redirect_to request.referrer, :notice => "Can't enroll, no seats available!"
+        render json: {:status => "error", :notice => "Can't enroll, no seats available!"}
+         
 
       else
 
 
 
         @subs = Subscription.new
-        @subs.user_id = current_user.id
-        @subs.course_id = course
+        @subs.user_id = uid
+        @subs.course_id = cid
         @subs.save
 
         
         enrl.enrolled += 1
         enrl.save
-        redirect_to request.referrer, :notice => "You are now enrolled in this course!"
+        
+        render json: {:status => "success", :notice => "User is now enrolled in this course!"}
+        
       end
 
     else
-      redirect_to request.referrer, :notice => "You are already enrolled in this course!"
+      render json: {:status => "error", :notice => "You are already enrolled in this course!"}
+      
     end
     
 
