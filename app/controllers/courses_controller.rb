@@ -1,5 +1,5 @@
 class CoursesController < ApplicationController
-  before_action :set_course, only: %i[ show edit update destroy ]
+  before_action :set_course, only: %i[ show edit update destroy enroll deenroll]
   before_action :authenticate_user!
 
   # GET /courses or /courses.json
@@ -9,6 +9,18 @@ class CoursesController < ApplicationController
 
   # GET /courses/1 or /courses/1.json
   def show
+    a = @course.users
+    output = Hash.new
+    a.each do |key, value|
+      output[key] = value
+    end
+   
+    
+    render json: @course.to_json(:include => { :users => output })
+    
+    #respond_to do |format|
+    #  format.json { render :show, status: :ok, kas: "lol" }
+    #end
   end
 
   def list
