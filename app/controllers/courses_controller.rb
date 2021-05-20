@@ -44,80 +44,93 @@ class CoursesController < ApplicationController
   end
 
   def deenroll
-    course = params[:c]
-    user = params[:u]
+    
+   
+
+    if User.where(id: params[:u]).exists? && Course.where(id: params[:id]).exists?
+
+      @user = User.find(params[:u])
+      @course = Course.find(params[:id])
+      
 
 
-    if Subscription.where(user_id: user,course_id: course).exists?
+        if Subscription.where(user_id: @user.id,course_id: @course.id).exists?
 
-      enrl = Course.find(course)
+          
 
-      if enrl.enrolled > 0
-        Subscription.where(user_id: user,course_id: course).destroy_all
-        enrl = Course.find(course)
-        enrl.enrolled -= 1
-        enrl.save
-        render json: {:status => "success", :notice => "User de enrolled from this course!"}
-      else
-        render json: {:status => "error", :notice => "Somthing went wrong!"}
-      end
+          if @course.enrolled > 0
+            Subscription.where(user_id: @user.id,course_id: @course.id).destroy_all
+            
+            @course.enrolled -= 1
+            @course.save
+            render json: {:status => "success", :notice => "User de enrolled from this course!"}
+          else
+            render json: {:status => "error", :notice => "Something went wrong!"}
+          end
+        else
+          render json: {:status => "error", :notice => "User is not a part of this cousre"}
+        end
 
 
 
     else
-      render json: {:status => "error", :notice => "User is not a part of this course"}
+      render json: {:status => "error", :notice => "No such user or course"}
     end
     
   end
   
 
   def enroll
-    cid = params[:c]
-    uid = params[:u]
+  
+  
+    if User.where(id: params[:u]).exists? && Course.where(id: params[:id]).exists?
 
-  if not User.where(id: uid).exists?
-    render json: {:status => "error", :notice => "No such user!"}
-
-  elsif not Course.where(id: cid).exists?
-      render json: {:status => "error", :notice => "No such course!"}
-      
+      @user = User.find(params[:u])
+      @course = Course.find(params[:id])
     
-  elsif not Subscription.where(user_id: uid,course_id: cid).exists?
-      enrl = Course.find(cid)
+      if not Subscription.where(user_id: @user.id,course_id: @course.id).exists?
+        if @course.enrolled >= @course.seats
+          render json: {:status => "error", :notice => "Can't enroll, no seats available!"}
+        else
 
-      if enrl.enrolled >= enrl.seats
-        render json: {:status => "error", :notice => "Can't enroll, no seats available!"}
-         
+
+
+          @subs = Subscription.new
+          @subs.user_id = @user.id
+          @subs.course_id = @course.id
+          @subs.save
+  
+          
+          @course.enrolled += 1
+          @course.save
+          
+          render json: {:status => "success", :notice => "User is now enrolled in this course!"}
+          
+        end
+      
 
       else
+        render json: {:status => "error", :notice => "You are already enrolled in this course!"}
 
-
-
-        @subs = Subscription.new
-        @subs.user_id = uid
-        @subs.course_id = cid
-        @subs.save
-
-        
-        enrl.enrolled += 1
-        enrl.save
-        
-        render json: {:status => "success", :notice => "User is now enrolled in this course!"}
-        
       end
+      
 
-   
+
 
 
     else
-      render json: {:status => "error", :notice => "You are already enrolled in this course!"}
-      
+      render json: {:status => "error", :notice => "No such user or course"}
+
     end
     
-
-
     
   end
+
+
+
+
+
+
 
   # GET /courses/new
   def new
