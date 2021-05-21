@@ -6,6 +6,11 @@ class HomeController < ApplicationController
     
   end
 
+  def subscriptions
+    render json: Subscription.all
+  end
+
+
   def students
     q = params[:id]
     if !(params.has_key?(:id))

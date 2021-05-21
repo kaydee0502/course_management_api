@@ -22,9 +22,8 @@ Rails.application.routes.draw do
   root 'home#index'
   put 'courses/:id/enroll' => 'courses#enroll'
   put 'courses/:id/deenroll' => 'courses#deenroll'
-  post 'courses/list'
-  post 'courses/enrollments'
   get 'home/mycourses' #view
+  get 'home/subscriptions'
   get 'home/students'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

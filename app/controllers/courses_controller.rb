@@ -23,37 +23,8 @@ class CoursesController < ApplicationController
     #end
   end
 
-  def list
-    user = params[:u]
-    if User.where(id: user).exists?
-
-      l = User.find(user).courses
-      render json: l.to_json
-    else
-      msg = { :status => "error", :message => "User not found!"}
-      render json: msg
-
-
-    end
-
-
-  end
-
-  def enrollments
-    course = params[:c]
-    if Course.where(id: course).exists?
-
-      l = Course.find(course).users
-      render json: l.to_json
-    else
-      msg = { :status => "error", :message => "Course not found!"}
-      render json: msg
-
-
-    end
-
-
-  end
+ 
+ 
 
   def deenroll
     
